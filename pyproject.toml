@@ -1,0 +1,30 @@
+[project]
+name = "aw-watcher-plex"
+version = "0.1.0"
+description = "ActivityWatch watcher for Plex media server activity"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Justin Malloy" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "aw-client>=0.5.15",
+    "flask>=3.1.0",
+    "plexapi>=4.16.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/justinmalloy/aw-watcher-plex"
+Issues = "https://github.com/justinmalloy/aw-watcher-plex/issues"
+
+[project.scripts]
+aw-watcher-plex = "aw_watcher_plex.main:main"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.4",
+]
