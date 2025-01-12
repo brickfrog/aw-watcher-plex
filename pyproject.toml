@@ -18,8 +18,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/justinmalloy/aw-watcher-plex"
-Issues = "https://github.com/justinmalloy/aw-watcher-plex/issues"
+Homepage = "https://github.com/brickfrog/aw-watcher-plex"
+Issues = "https://github.com/brickfrog/aw-watcher-plex/issues"
 
 [project.scripts]
 aw-watcher-plex = "aw_watcher_plex.main:main"
