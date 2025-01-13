@@ -36,8 +36,12 @@ Example of results (from a TV show):
 ```bash
 git clone https://github.com/brickfrog/aw-watcher-plex
 uv venv ~/.local/share/venvs/aw-watcher-plex # or your preferred location for virtual environments
-source ~/.local/share/venvs/aw-watcher-plex/bin/activate
-uv pip install .
+uv tool install .  # This will install the executable to ~/.local/bin
+```
+
+Make sure `~/.local/bin` is in your PATH. You can add this to your shell's config file (e.g. `.bashrc` or `.zshrc`):
+```bash
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 ## Configuration
@@ -69,18 +73,20 @@ uv run python aw_watcher_plex/main.py
 ```
 
 ### Automating
+If it's on the path, it should be picked up by the ActivityWatch server. If not, you can run it as a system service.
 
-I believe it should be picked up due to the `aw-watcher-plex` name, but you can also run it as a system service, I personally like to create a .venv with uv (as above) and then run it as such:
-
+When installed via `uv tool install .`, the `aw-watcher-plex` command will be installed in `~/.local/bin`. Here's an example systemd service file, change the requires to as needed (e.g. if you're using awatcher instead of aw-server):
 
 ```service
 [Unit]
 Description=ActivityWatch Plex Watcher
 After=aw-server.service
+Requires=aw-server.service
+BindsTo=aw-server.service
 
 [Service]
 Type=simple
-ExecStart=/home/user/.local/bin/aw-watcher-plex # or wherever the executable is
+ExecStart=/home/user/.local/bin/aw-watcher-plex
 Restart=always
 RestartSec=3
 
