@@ -36,6 +36,7 @@ Example of results (from a TV show):
 ```bash
 git clone https://github.com/brickfrog/aw-watcher-plex
 uv venv ~/.local/share/venvs/aw-watcher-plex # or your preferred location for virtual environments
+source ~/.local/share/venvs/aw-watcher-plex/bin/activate
 uv pip install .
 ```
 
@@ -79,7 +80,7 @@ After=aw-server.service
 
 [Service]
 Type=simple
-ExecStart=/home/user/.local/bin/aw-watcher-plex
+ExecStart=/home/user/.local/bin/aw-watcher-plex # or wherever the executable is
 Restart=always
 RestartSec=3
 
