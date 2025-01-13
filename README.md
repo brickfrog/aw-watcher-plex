@@ -34,6 +34,7 @@ Example of results (from a TV show):
 ### Install the package and dependencies
 
 ```bash
+git clone https://github.com/brickfrog/aw-watcher-plex
 uv venv ~/.local/share/venvs/aw-watcher-plex # or your preferred location for virtual environments
 uv pip install .
 ```
@@ -55,14 +56,15 @@ Configure your token and server settings:
 poll_time = 5.0
 base_url = "http://localhost:32400"
 token = "YOUR-PLEX-TOKEN-HERE"
+log_pauses = true # set to false to not log when paused
 ```
 
 ## Usage
 
-Start / test the watcher by running:
+Start / test out the watcher by running:
 
 ```bash
-python aw_watcher_plex
+uv run python aw_watcher_plex/main.py
 ```
 
 ### Automating

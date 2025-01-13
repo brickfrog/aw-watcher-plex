@@ -15,6 +15,7 @@ DEFAULT_CONFIG = """
 poll_time = 5.0
 base_url = "http://localhost:32400"
 token = ""
+log_pauses = true
 """
 
 
@@ -116,6 +117,7 @@ def main():
     poll_time = float(config["aw-watcher-plex"].get("poll_time", 5.0))
     base_url = config["aw-watcher-plex"].get("base_url", "http://localhost:32400")
     token = config["aw-watcher-plex"].get("token")
+    log_pauses = config["aw-watcher-plex"].get("log_pauses", True)
 
     if not token:
         logger.error("No token specified in config")
@@ -139,6 +141,11 @@ def main():
                 session = get_most_recent_session(sessions)
                 if hasattr(session.player, "state"):
                     data = get_metadata_from_session(session)
+                    
+                    # Skip if it's paused and we're not logging pauses
+                    if not log_pauses and data["player_state"] != "playing":
+                        print("Session paused - skipping due to log_pauses=false")
+                        continue
 
                     state_str = (
                         "Playing" if data["player_state"] == "playing" else "Paused"
